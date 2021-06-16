@@ -1,2 +1,2 @@
-# params_runscript_examples
-Some basic examples with plams and ParAMS, aimed at use on the IFP cluster (SLURM).
+# ParAMS runscript examples
+This repository contains a few simple, documented run-scripts to use plams and ParAMS. These are, more or less, specifically aimed to be used on computers on the IFP-network (i.e. that can access the IFP-licenses and cluster). Moreover, minimal bash-scripts to run the calculations on the IFP-cluster are provided as well.
