@@ -1,5 +1,5 @@
 # ParAMS runscript examples
-This repository contains a few simple, documented run-scripts to use plams and ParAMS. These are aimed to be used on computers on the IFP-network (i.e. that can access the IFP-licenses and cluster).
+This repository contains a few simple, documented run-scripts to use plams and ParAMS. These are aimed to be used on computers on the IFP-network (i.e. that can access the IFP-licenses and cluster). All the command and examples are run under linux, although they should be fairly similar on Windows.
 
 ## Software
 ### Installation
@@ -27,9 +27,10 @@ Doing so will initialize a virtual environment where amspython will also look fo
 
 
 ### Output
+Multiple files are outputted, although the most important one is by far the *rkf*-file. The different files are summarized below.
 
 #### rkf-files
-The output from the calculations is stored in one single file binary *.rkf* file. The *rkf* file replaces basically all the old format files, such as the *fort* files. These can be read in using the GUI-tools coming with AMS. It can also be useful to use
+The output from the calculations is stored in one single binary *.rkf* file. The *rkf* file replaces the old output files, such as the *fort* files. These can be read in using the GUI-tools coming with AMS. It can also be useful to use
 ```bash
 kfbrowser
 ```
@@ -38,10 +39,14 @@ to view the content of the *rkf*-files as a text-based format.
 #### dill-files
 Another possibility to access the calculation results is by using the dill-files. These are useful when you want to access the results using a python-interpreter. All the information is stored in an AMSobject, but once the python-session or scripts ends, these variables are deleted from memory. The automatically generated dill-file allows to restore the session of the object in a new python shell. This can be useful if you want to analyze the results from the server on your local machine using python.
 
-> !! **Dill-files are not suitable for long-term storage**: Dill-files are a binary format of an object in python. It strongly depends on your installed python-interpreter, packages and versions. When you update your interpreter or packages, it is possible that you can no longer read in the dill-files!
+> :warning: **Dill-files are not suitable for long-term storage** Dill-files are the result of 'pickling', which is transorming a Python-object to a binary format. The file strongly depends on your installed python-interpreter, packages and their versions. When you update your interpreter or packages, it is possible that you can no longer read in the dill-files!
+
 
 #### out, log and error files
-These are human-readible text-files that can serve as a quick view on the results. The output-file will be generated once the calculations are done and contain many calculation results. The log-file contains information on the iteration at each step, but is in general quite limited 
+These are human-readible text-files that can serve as a quick view on the results. 
+* The output-file will be generated once the calculations are done. They contain rather detailed calculation results. 
+* The log-file contains information on the iteration at each step, but is in general quite limited. This file is particarly suited for following the process/convergence of your calculations.
+* The error-file is hopefulle rather empty. As expected, whenever an error occurs, it will be saved in this file.
 
 ## Useful links:
 * [Python stack in AMS](https://www.scm.com/doc/Scripting/GettingStarted.html)
