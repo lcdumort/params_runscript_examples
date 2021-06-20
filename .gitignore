@@ -1,1 +1,10 @@
-/plams_workdir
+*plams_workdir/
+*.rkf
+*.out
+*.log
+*.in
+*.err
+*.run
+logfile
+*.yaml
+*.dill

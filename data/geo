@@ -1,0 +1,10 @@
+BIOGRF 200
+DESCRP coordinates
+RUTYPE SINGLE POINT
+#refdata /tmp/dumortil/coordinates--817198.xyz
+REMARK Created by AMSinput
+HETATM     1 O                  -1.05634   0.80899  -0.00000   O1   1 1   0.00000
+HETATM     2 H                  -1.92754   0.40899  -0.69076   H1   1 1   0.00000
+HETATM     3 H                  -0.98513   0.10899  -0.49076   H1   1 1   0.0000
+END
+
