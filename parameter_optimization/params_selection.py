@@ -18,13 +18,13 @@ def printtotal():
 # DEFINING TRAINNGSETS AND FORCEFIELD #
 #######################################
 
-trainsetfile = '/work/dumortil/Documents/projects/zeolytes/training_set/trainset.in'
+trainsetfile = '/path/to/trainset.in'
 reference = trainset_to_params(trainsetfile)
 reference.store('trainingset.yaml')
-ffieldfile = '/work/dumortil/Documents/projects/zeolytes/forcefields/1-ffield_Rff1/ffield_Rff1'
-parameters = ReaxParams(ffieldfile)
-geofile = '/work/dumortil/Documents/projects/zeolytes/structures/geo'
+ffieldfile = '/path/to/ffield'
+geofile = '/path/to/geo'
 
+parameters = ReaxParams(ffieldfile)
 print('Total parameters: {}'.format(len(parameters)))
 print('Active paramters: {}'.format(len(parameters.active)))
 
@@ -32,75 +32,19 @@ print('Active paramters: {}'.format(len(parameters.active)))
 # STARTING TO ACTIVATE PARAMETERS #
 ###################################
 
-# Only select relevant parameters (based on atoms)
-atoms = set(['Al', 'O', 'H'])
+# Untoggle to deselect all parameters
+#for param in parameters:
+#    param.is_active = False
+
+to_activate = [
+    'list parameters to activate as strings'
+]
+
 for param in parameters:
-    param.is_active = set(param.atoms).issubset(atoms) and param.is_active
-
-# Counting atom-specific parameters
-for param in parameters.active:
-    if len(set(param.atoms)) == 1:
-
-# Finding Al-O parameters
-atoms = set(['Al', 'O'])
-for param in parameters.active:
-    param.is_active = set(param.atoms).issubset(atoms)
-
-# Some odd parameters with value 0 are expected to stay at that value
-# So these are removed from the optimization selection
-for param in parameters.active:
-    param.is_active = (param.value != 0)
-
-# Remove atom-independent parameters (assuming those are good)
-for param in parameters.active:
-    param.is_active = len(param.atoms) != 0
-printtotal()
-
-# Deactivate 3 and 4-atom parameters within O atom type (assuming those are irrelevant and should thus not be changed)
-for param in parameters.active:
-    param.is_active = not ((len(param.atoms) > 2) and (set(param.atoms) == set(['O'])))
-
-# Removing parameters that are eReaxFF dependent
-for param in parameters.active:
-    param.is_active = not re.search('eReaxFF', param.name)
-
-# remove some standard values for 
-for param in parameters.active:
-    if re.search('valence', param.name):
-        param.is_active = False
-
-for param in parameters.active:
-    if re.search('Valency', param.name):
-        param.is_active = False
-
-for param in parameters.active:
-    if re.search('van der Waals', param.name):
-        param.is_active=False
-
-for param in parameters.active:
-    if re.search('EEM', param.name):
-        param.is_active = False
-
-for param in parameters.active:
-    if re.search('Number of lone pairs', param.name):
-        param.is_active = False
-
-for param in parameters.active:
-    if re.search('Sigma bond covalent radius', param.name):
+    if param.name in to_activate:
         param.is_active = True 
 
-for param in parameters.active:
-    if re.search('Pi bond covalent radius', param.name):
-        param.is_active = False
-
-for param in parameters.active:
-    if re.search('Double pi bond covalent radius', param.name):
-        param.is_active = False
-
-
-# unselecting O-O parameters for optimization. Justification: no O2 in the system?
-for param in parameters.active:
-    param.is_active = (param.atoms != ['O', 'O'])
+# Add some more parameter selection criterias
 
 printtotal()
 
@@ -109,10 +53,13 @@ printtotal()
 ########################################
 
 # Defining the optimizer, task and engine for the optimization
-callbacks = [Timeout(50*60*60), Logger()] 
+callbacks = [Timeout(50*60*60), 
+             Logger()] 
 optimizer = CMAOptimizer(popsize=10, sigma=0.03)
 
 
+
+# Redefine the task you want to optimize
 s = Settings()
 s.input.ams.Task = 'GeometryOptimization'
 s.input.ams.geometryoptimization.Method = 'FIRE'

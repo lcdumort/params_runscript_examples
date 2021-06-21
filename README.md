@@ -10,20 +10,22 @@ There is no particular need of installation of python, plams or ParAMS, as they 
 
 Python Library for Automating Molecular Simulations is the python interface to AMS. Plams allows to automate a lot of tasks.
 
+
 ### ParAMS
 <img src="params.svg" alt="params" width="200"/>
 
 Parameterization Tools for AMS is the main program to optimize parameters. Apart from this, it contains many useful converting modules.
 
-> :information_source: Since 18 June, the GloMPO has been published under the GPL-license! This is not yet included, but I plan on adding scripts soon.
+> :information_source: Since 18 June, GloMPO has been published under the GPL-license! This is not yet included, but I plan on adding scripts soon.
+
 
 ### Other python packages
-Although the amspython already comes with quite a few python-packages, it is always possible that one needs more. this can be done by running 
+Although the amspython already comes with the majority of the scientific python packages, it is always possible that one needs more. this can be done by running 
 ```bash
 amspython -m pip install *package*
 ```
 Doing so will initialize a virtual environment where amspython will also look for source code.
-> :information_source: This is not a trivial process on the ener440. For basic functionality, the standard included packages are sufficient. However, if you wish to use GloMPO (which has quite some dependencies that are  not yet included), you need to add packages. Due to security issues, this is not a trivial process. Please contact me if you would need this, I can help you set this up.
+> :information_source: This is not a trivial process on the ener440. For normal functionality, the standard included packages are sufficient. However, if you wish to use GloMPO (which has quite some dependencies that are  not yet included), you need to add packages. Due to security issues, this is not a trivial process and needs some workarounds. Please contact me if you would need this, I can help you set this up. I will also try to add a small tutorial on how to do this as well.
 
 
 ### Output
@@ -47,6 +49,7 @@ These are human-readible text-files that can serve as a quick view on the result
 * The output-file will be generated once the calculations are done. They contain rather detailed calculation results. 
 * The log-file contains information on the iteration at each step, but is in general quite limited. This file is particarly suited for following the process/convergence of your calculations.
 * The error-file is hopefulle rather empty. As expected, whenever an error occurs, it will be saved in this file.
+
 
 ## Useful links:
 * [Python stack in AMS](https://www.scm.com/doc/Scripting/GettingStarted.html)

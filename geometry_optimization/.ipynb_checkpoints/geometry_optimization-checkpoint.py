@@ -2,6 +2,7 @@
 
 """
 author: Loic Dumortier
+email: loic.dumortier@ifpen.fr OR loic.dumortier@ugent.be
 date: 16/06/2021
 description: A minimal example to perform a geometry optimization with FIRE and ReaxFF as engine.
 """
