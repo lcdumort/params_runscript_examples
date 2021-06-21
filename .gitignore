@@ -1,4 +1,6 @@
 *plams_workdir/
+.vscode/
+.ipynb_checkpoints/
 *.rkf
 *.out
 *.log
